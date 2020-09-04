@@ -1,0 +1,194 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% load templatehelp %}
+{% block content %}
+
+    <!-- Header -->
+<form method="GET">
+    <header id="header" class="header">
+        <div class="header-competitions">
+            <div class="container">
+                <div class="row pink">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h4>Engrave Your</h4>
+                            <h1></p>Competitions</h1>
+                            <div class="row ml-1">
+                                {{ filter.form.name|add_class:'searchname form-control'}}
+                                <button class="btn-browse" type="submit">Search</button>
+                            </div>
+                            
+                        </div>
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6">
+                        <div class="image-container illustration">
+                            <img class="img-fluid" src="{% static 'images/competitions.svg' %}" alt="alternative">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+    <!-- end of header -->
+    
+    <form method="GET">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="dropdown-filter col-md-10 col-10">
+                    <div class="row align-items-center">
+                        <i class='fas fa-sticky-note'></i>
+                        <div class="select_wrap kategori">
+                            <ul class="default_option">
+                                <li>
+                                    <div class="option">
+                                        <p>Kategori</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="select_ul">
+                                <label for="{{ filter.form.category.id_for_label }}"></label>
+                                {{ filter.form.category }}
+                            </ul>
+                        </div>
+                        <div class="line-border"></div>
+                    </div>
+                    <div class="row align-items-center space">
+                        <i class='fas fa-graduation-cap'></i>
+                        <div class="select_wrap peserta">
+                            <ul class="default_option">
+                                <li>
+                                    <div class="option">
+                                        <p>Peserta</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="select_ul">
+                                <div class="fieldWrapper">
+                                    <label for="{{ filter.form.participant_level.id_for_label }}"></label>
+                                    {{ filter.form.participant_level }}
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="line-border"></div>
+                    </div>
+                    <div class="row align-items-center space">
+                        <i class='fas fa-sort-amount-up'></i>
+                        <div class="select_wrap tingkat">
+                            <ul class="default_option">
+                                <li>
+                                    <div class="option">
+                                        <p>Tingkat</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="select_ul">
+                                <div class="fieldWrapper">
+                                    <label for="{{ filter.form.competitions_level.id_for_label }}"></label>
+                                    {{ filter.form.competitions_level }}
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 col-2">
+                    <button class="btn-search-lg d-md-block d-none" type="submit">Search</button>
+                    <button class="btn-search-lg d-md-none d-block" type="submit"><i class='fas fa-search'></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="dropdown-sortby justify-content-between">
+                <p> <b>{{ filter.qs.count }}</b> Lomba tersedia</p>
+                <div class="row align-items-center">
+                    <p>Sort by</p>
+                    <div class="select_wrap sortby">
+                        <ul class="default_option">
+                            <li>
+                                <p>latest upload</p>
+                            </li>
+                        </ul>
+                        <ul class="select_ul">
+                            <label for="{{ filter.form.ordering.id_for_label }}"></label>
+                            {{ filter.form.ordering}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="container">
+            <div class="dropdown-filter col-md-10 col-10">
+                <div class="row align-items-center">
+                    {{ filter.form.name|add_class:'searchname form-control'}}
+                </div>
+            </div>
+        </div> -->
+</form>
+
+    <!-- Competitions Cards -->
+    <div class="competitions-card">
+        <div class="container">
+            <div class="cards-container">
+                {% for Lomba in response %}
+                <div class="card-wrapper">
+                    <a href="{{ Lomba.get_absolute_url }}" class="card-link">
+                        <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                    </a>
+                    <div class="card-content">
+                        <div class="profile-top"> 
+                            <img class="fit-avatar-image" src="{{Lomba.owner.profile.image.url}}" alt="">
+                            <h6 class="card-content-text">{{Lomba.owner}}</h6>
+                        </div>
+                        <div class="card-title">
+                            <a href="{{ Lomba.get_absolute_url }}" class="card-link">
+                                <h5 class="max-lines" style="margin-bottom: 0;">{{Lomba.name}}</h5>
+                            </a>
+                        </div>
+                        <div class="keterangan">
+                            <h6 class="card-content-text">{{ Lomba.category }}</h6>
+                            <h6 class="card-content-text">{{ Lomba.days_remaining }} hari deadline pendaftaran</h6>
+                            <i class='fas fa-star'></i>{{Lomba.profile_set.count}} Bookmark
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h6 class="card-content-text">Total Hadiah <b>Rp 50 Juta</b></h6>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- end of competitions cards -->
+
+    <!-- Numbers -->
+    {% if response.has_other_pages %}
+    <div class="page-numbers">
+        <div class="container d-flex justify-content-center">
+            <ul class="pagination pagination-sm">
+                {% if response.has_previous %}
+                    <a class="btn btn-outline-pagination" href="{% relative_url 1 'page' request.GET.urlencode %}">First</a>
+                    <a class="btn btn-outline-pagination" href="{% relative_url response.previous_page_number 'page' request.GET.urlencode %}">Previous</a>
+                {% endif %}
+                    
+                {% for num in response.paginator.page_range %}
+                    {% if response.number == num %}
+                        <a class="btn btn-outline-pagination-current" href="{% relative_url num 'page' request.GET.urlencode %}">{{ num }}</a>
+                    {% elif num > response.number|add:'-3' and num < response.number|add:'3' %}
+                        <a class="btn btn-outline-pagination" href="{% relative_url num 'page' request.GET.urlencode %}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                    
+                {% if response.has_next %}
+                    <a class="btn btn-outline-pagination" href="{% relative_url response.next_page_number 'page' request.GET.urlencode %}">Next</a>
+                    <a class="btn btn-outline-pagination" href="{% relative_url response.paginator.num_pages 'page' request.GET.urlencode %}">Last</a>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    <!-- end of numbers -->
+{% endblock content %}

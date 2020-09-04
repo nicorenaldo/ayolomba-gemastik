@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}  
+{% block content %}
+<div class="limiter confirm-delete">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="content-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <div class="border-bottom mb-2">
+                            <legend class="mb-2">Delete Post</legend>
+                        </div>
+                        <h2>Are you sure you want to delete the post "{{ object.title }}"</h2>
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-danger mr-2" type="submit">Yes, Delete</button>
+                        <a class="btn btn-outline-secondary" href="{% url 'browse' %}">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

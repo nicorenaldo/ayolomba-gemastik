@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}    
+
+<div class="limiter dashboard">
+    <div class="container-dashboard flex-column border-top">
+        <!--**********************************
+            Content body start
+        ***********************************-->
+            <div class="container-fluid">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="row">
+                    <div class="col-lg-4 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center mb-4">
+                                    <img class="mr-3 rounded-circle account-img" src="{{ user.profile.image.url }}" width="80" height="80" alt="">
+                                    <div class="media-body">
+                                        <h4 class="mb-0">{{ user.profile.firstname }} {{ user.profile.lastname }} <i class='fas fa-pencil-alt'></i></h4>
+                                        <p class="text-muted mb-0">{{ user.email }}</p>
+                                    </div>
+                                </div>
+                                <div class="user-menu">
+                                    <ul class="menu-list">
+                                        <li class="paperclip"> <b>Lomba Favorit </b>{{user.profile.favorite.count}} Lomba</li>
+                                        <li class="copy"> <b>Posts </b>{{user.profile.favorite.count}} Lomba</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="card">
+                            <div class="card-body">
+                                <form autocomplete="off" class="form-overview">
+                                    <div class="inner-row description">
+                                        <aside>
+                                            <h4 class="alt hint--top" data-hint="Tell us more about yourself so we can find a good fit for u">
+                                                Keahlian
+                                                <a href="#" class="add">Add New</a>
+                                            </h4>
+                                        </aside>
+                                        <div class="empty-list">
+                                            Tambahkan keahlian
+                                            <input type="hidden" name="[seller_profile]" value="">
+                                        </div>
+                                        <input type="hidden" value="0">
+                                    </div>
+                                </form>
+                                <form autocomplete="off" class="form-overview">
+                                    <div class="inner-row description">
+                                        <aside>
+                                            <h4 class="alt hint--top" data-hint="Tell us more about yourself so we can find a good fit for u">
+                                                Pendidikan
+                                                <a href="#" class="add">Add New</a>
+                                            </h4>
+                                        </aside>
+                                        <div class="empty-list">
+                                            Tambahkan pendidikan
+                                            <input type="hidden" name="[seller_profile]" value="">
+                                        </div>
+                                        <input type="hidden" value="0">
+                                    </div>
+                                </form>
+                                <form autocomplete="off" class="form-overview">
+                                    <div class="inner-row description">
+                                        <aside>
+                                            <h4 class="alt hint--top" data-hint="Tell us more about yourself so we can find a good fit for u">
+                                                Hobby
+                                                <a href="#" class="add">Add New</a>
+                                            </h4>
+                                        </aside>
+                                        <div class="empty-list">
+                                            Tambahkan Hobby
+                                            <input type="hidden" name="[seller_profile]" value="">
+                                        </div>
+                                        <input type="hidden" value="0">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>  
+                        <div class="card">
+                            <div class="card-body todo-request">
+                                <h4>Anda memiliki usulan lomba menarik?</h4>
+                                <p class="post-request">Ajukan lomba yang belum pernah ada sebelumnya.</p>
+                                <a class="btn-big lesspad" href="#">Post a Request</a>
+                            </div>
+                        </div>  
+                        <div class="card">
+                            <div class="card-body todo-advice">
+                                <h4>Berikan kami saran</h4>
+                                <form action="#" class="form-profile">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="textarea" id="textarea" cols="30" rows="5" placeholder="Write a message"></textarea>
+                                    </div>
+                                </form>
+                                <a class="btn-big lesspad btn-pink" href="#">Kirim Saran</a>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="col-lg-8 col-xl-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2><span class="kuning">Selamat datang</span> {{ user.profile.firstname }}</h2>
+                                <p class="p-large">Hidup memang gak pasti, tapi akan jadi pasti jika kita berani bergerak &
+                                    mengusahakannya. Tetap semangat mengejar mimpi dan menerobos potensimu!</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-sm-12 col-xxl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Notifications</h4>
+                                        <div id="notifications">
+                                            {% for i in "123456789" %}
+                                            <div class="media border-bottom-1 pt-3 pb-3">
+                                                <img width="35" src="{% static '/images/avatar/1.jpg' %}" class="mr-3 rounded-circle">
+                                                <div class="media-body">
+                                                    <h5>Pendaftaran HMTI Festival 2020 Berhasil</h5>
+                                                    <p class="mb-0">Silahkan tunggu informasi lebih lanjut</p>
+                                                </div><span class="text-muted ">September 2, 2020</span>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="competitions-card" style="padding-bottom: 1rem;">
+                                    <div class="container">
+                                        <h4>Lomba yang dibintangi</h4>
+                                        <div class="cards-container">
+                                            {% for Lomba in user.profile.favorite.all %}
+                                            <div class="card-wrapper">
+                                                <a href="{{ Lomba.get_absolute_url }}" class="card-link">
+                                                    <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                                                </a>
+                                                <div class="card-content">
+                                                    <div class="profile-top"> 
+                                                        <img class="fit-avatar-image" src="{{Lomba.owner.profile.image.url}}" alt="">
+                                                        <h6 class="card-content-text">{{Lomba.owner}}</h6>
+                                                    </div>
+                                                    <div class="card-title">
+                                                        <a href="{{ Lomba.get_absolute_url }}" class="card-link">
+                                                            <h5 class="max-lines" style="margin-bottom: 0;">{{Lomba.name}}</h5>
+                                                        </a>
+                                                    </div>
+                                                    <div class="keterangan">
+                                                        <h6 class="card-content-text">{{ Lomba.category }}</h6>
+                                                        <h6 class="card-content-text">{{ Lomba.days_remaining }} hari deadline pendaftaran</h6>
+                                                        <i class='fas fa-star'></i>{{Lomba.profile_set.count}} Bookmark
+                                                    </div>
+                                                </div>
+                                                <div class="card-info">
+                                                    <h6 class="card-content-text">Total Hadiah <b>Rp 50 Juta</b></h6>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="competitions-card" style="padding-bottom: 1rem;">
+                                    <div class="container">
+                                        <h4>Lomba yang kamu pasang</h4>
+                                        <div class="cards-container">
+                                            {% for Lomba in list_lomba %}
+                                            <div class="card-wrapper">
+                                                <a href="{{ Lomba.get_absolute_url }}" class="card-link">
+                                                    <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                                                </a>
+                                                <div class="card-content">
+                                                    <div class="profile-top"> 
+                                                        <img class="fit-avatar-image" src="{{Lomba.owner.profile.image.url}}" alt="">
+                                                        <h6 class="card-content-text">{{Lomba.owner}}</h6>
+                                                    </div>
+                                                    <div class="card-title">
+                                                        <a href="{{ Lomba.get_absolute_url }}" class="card-link">
+                                                            <h5 class="max-lines" style="margin-bottom: 0;">{{Lomba.name}}</h5>
+                                                        </a>
+                                                    </div>
+                                                    <div class="keterangan">
+                                                        <h6 class="card-content-text">{{ Lomba.category }}</h6>
+                                                        <h6 class="card-content-text">{{ Lomba.days_remaining }} hari deadline pendaftaran</h6>
+                                                        <i class='fas fa-star'></i>{{Lomba.profile_set.count}} Bookmark
+                                                    </div>
+                                                </div>
+                                                <div class="card-info">
+                                                    <h6 class="card-content-text">Total Hadiah <b>Rp 50 Juta</b></h6>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        <!--**********************************
+            Content body end
+        ***********************************-->
+    </div>
+</div>
+
+{% endblock content %}
+

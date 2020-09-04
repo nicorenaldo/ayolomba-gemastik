@@ -1,0 +1,128 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h1>Cari <span  class="kuning">Lombamu</span> Sekarang</h1>
+                            <p class="p-large">Platform lomba paling komplit se-Indonesia.
+                                Cari lomba sesuai minatmu, raih prestasi
+                                dan capai mimpimu disini.</p>
+                            <a class="btn-solid-lg page-scroll" href="{% url 'browse' %}">Telusuri Lomba<i class="fas fa-caret-right"></i></a>
+                            <a class="btn-solid-lg page-scroll" href="{% url 'competitions:author-add' %}">Pasang Lomba<i class="fas fa-caret-right"></i></a>
+                        </div>
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 curvey">
+                        <div class="image-container illustration">
+                            <img class="img-fluid" src="{% static 'images/header-illustration.svg' %}" alt="alternative">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+    <hr class="solid">
+    <!-- About -->
+    <div id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 curvey">
+                    <img class="img-fluid illustration" src="{% static 'images/about-illustration.svg' %}" alt="alternative">
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <img style="height: 3rem" class="mb-2" src="{% static 'images/AyoLomba!@2x.png' %}" alt="alternative">
+                        <p class="p-large">AyoLomba! adalah platform informasi lomba yang ditujukan untuk mendukung penyebaran lomba di Indonesia dan memajukan produktivitas pelajar Indonesia. </p>
+                        <div class="banner_item">
+                            <div class="single_item">
+                                <img src="{% static 'images/about-icon-1.svg' %}" alt="">
+                                <p class="p-large">Terupdate<p>
+                            </div>
+                            <div class="single_item">
+                                <img src="{% static 'images/about-icon-2.svg' %}" alt="">
+                                <p class="p-large">Terlengkap</p>
+                            </div>
+                            <div class="single_item">
+                                <img src="{% static 'images/about-icon-3.svg' %}" alt="">
+                                <p class="p-large">Terbaru</p>
+                            </div>
+                        </div>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of about -->
+    <!-- end of about -->
+    <hr class="solid">
+    <!-- Rekomendasi -->
+    <div class="slider-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Lomba Terbaru</h2>
+                    <p class="p-large">Temukan lomba-lomba yang sesuai dengan minatmu.</p>
+                </div> <!-- end of col -->
+                <div class="col-lg-12">
+                    <!-- Image Slider -->
+                    <div class="slider-container">
+                        <div class="swiper-container image-slider">
+                            <div class="swiper-wrapper">
+                                
+                                <!-- Slide -->
+                                {% for Lomba in list_lomba %}
+                                    <div class="center swiper-slide">
+                                        <div class="property-card">
+                                            <a href="{{ Lomba.get_absolute_url }}">
+                                                <img class="property-image" src="{{ Lomba.image.url }}">
+                                            </a>
+                                            <div class="property-description">
+                                                <div class="card-title">
+                                                    <h5 class="max-lines"> {{Lomba.name}} </h5>
+                                                </div>
+                                                <p style="margin-bottom: 0;">{{ Lomba.category }}</p>
+                                                <p style="margin-bottom: 0;">{{ Lomba.days_remaining }} hari deadline pendaftaran</p>
+                                                <p style="margin-bottom: 0;">Total Hadiah <b>Rp 50 Juta</b></p>
+                                            </div>
+                                            <div class="property-deadline">
+                                                <div class="line-border"></div>
+                                                <h6> {{Lomba.location}} </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of slide -->
+                    
+                            </div> <!-- end of swiper-wrapper -->
+
+                        </div> <!-- end of swiper-container -->
+                    </div> <!-- end of slider-container -->
+                    <!-- end of image slider -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of slider-2 -->
+    <!-- end of rekomendasi -->
+
+    <!-- Banner -->
+    <div id="preview" class="basic-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>{{ total.count }} Lomba Terdaftar</h2>
+                    <p class="p-large text-center">Database Lomba Terlengkap - Kesempatan Tanpa Batas</p>
+                    <a class="btn-solid-lg page-scroll" href="{% url 'register' %}">Daftar Sekarang Juga<i class="fas fa-caret-right"></i></a>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-1 -->
+    <!-- end of banner -->
+
+{% endblock content %}

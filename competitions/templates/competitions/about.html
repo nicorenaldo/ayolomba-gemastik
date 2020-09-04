@@ -1,0 +1,114 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Header -->
+    <header id="header" class="about-1">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h1>Tentang Kami</h1>
+                            <p class="p-large" style="text-align: justify;">Tergerak untuk mengatasi permasalahan remaja dalam mencari lomba, Ayolomba! hadir untuk menjadi wadah dan jalur penyebaran berbagai informasi perlombaan langsung dari sumber kepada para pelajar Indonesia. Dengan dikembangkannya platform mandiri ini, diharapkkan tidak ada lagi anak muda Indonesia yang kehilangan peluang untuk menerobos potensinya. </p>
+                            <a class="btn-solid-lg page-scroll" href="{% url 'browse' %}">Cari Lomba<i class="fas fa-caret-right"></i></a>
+                        </div>
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 tentangkami curvey">
+                        <div class="image-container illustration">
+                            <img class="img-fluid" src="{% static 'images/tentangkami-illustration.svg' %}">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+
+    <!-- About -->
+    <div id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 berawal curvey">
+                    <img class="img-fluid" src="{% static 'images/berawal-illustration.svg' %}">
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h2>Yang Berawal dari...</h2>
+                        <p class="p-large">Keresahan yang dialami dari pengembang aplikasi AyoLomba! Lomba yang hanya terpampang di sosial media membuat proses pencarian sangat melelahkan dan terkadang tanpa hasil</p>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of about -->
+    <!-- end of about -->
+    <div id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h2>Menghadirkan Sebuah Solusi...</h2>
+                        <p class="p-large">AyoLomba! berdiri untuk membantu seluruh generasi muda Indonesia menemukan kesempatannya untuk menuangkan ide-ide segar mereka melalui lomba. Melalui Ayolomba! diharapkan semua informasi lomba sampai ke tingkat internasional dapat terintegrasi dengan lengkap, menarik dan sistematis agar generasi muda memiliki produktivitas lebih tinggi dan lomba yang terselenggara lebih banyak peminatnya</p>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6 solusi curvey">
+                    <img class="img-fluid" src="{% static 'images/solusi-illustration.svg' %}">
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of about -->
+    <!-- end of about -->
+
+
+    <section class="feature_part">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="section_title text-center">
+                        <h1>Apa Saja Fitur AyoLomba?</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-3 col-sm-12">
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <span class="single_feature_icon"><img src="{% static 'images/feature-icon.svg' %}" alt=""></span>
+                            <h4 class="doublerow">Archieve Tersusun</h4>
+                            <p>Konten lomba yang ditampilkan hanyalah lomba yang sedang aktif, memudahkan pengguna memilah lomba.</p>
+                        </div>
+                    </div>
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <span class="single_feature_icon"><img src="{% static 'images/feature-icon.svg' %}" alt=""></span>
+                            <h4>Kategorisasi</h4>
+                            <p>Pengguna dapat dengan mudah mencari lomba yang cocok dengan system filter yang telah terintegrasi.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-sm-12">
+                    <img class="img-fluid single_feature_img" src="{% static 'images/feature-illustration.svg' %}" alt="">
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <span class="single_feature_icon"><img src="{% static 'images/feature-icon.svg' %}" alt=""></span>
+                            <h4 class="doublerow">Database Bersama</h4>
+                            <p>Dengan menggunakan konsep community submit, pihak lomba dan peserta lomba dapat berinteraksi dengan efektif pada website AyoLomba!</p>
+                        </div>
+                    </div>
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <span class="single_feature_icon"><img src="{% static 'images/feature-icon.svg' %}" alt=""></span>
+                            <h4>Pemberitahuan</h4>
+                            <p>Kami menyediakan layanan pemberitahuan untuk kategori lomba yang ingin anda langganan, sehingga info terbaru akan dating ke tangan anda</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+{% endblock content %}

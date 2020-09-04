@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+{% block content %}
+
+<div class="limiter submit">
+    <div class="container-login100 flex-column">
+        <div class="header-submit d-flex justify-content-center">
+            <div class="text-container">
+                <h1 class="login100-form-title">Hai <span class="pink">{{user.profile.firstname}}</span>, silahkan isi detail perlombaan</h1>
+            <p>Isi yang jelas ya, jangan spam dan bohong. Bohong itu tidak baik kami akan melakukan pemeriksaan mengenai lomba yang kamu pasang okay.</p>
+            </div>
+            <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Profile')">Profile</button>
+        </div>
+        <div class="wrap-login100">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="content-section">
+                    <div id ="Profile" class="tabcontent login100-form">
+                        {% csrf_token %}
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        {% for field in form.visible_fields %}
+                            {% if field.name == "image" %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label}}</label>
+                                {{ field|add_class:'form-control filestyle' }}
+                                {% for error in field.errors %}
+                                    <span class="help-block">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label}}</label>
+                                {{ field|add_class:'form-control' }}
+                                {% for error in field.errors %}
+                                    <span class="help-block">{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                            {% endif %} 
+                        {% endfor %}
+                        <div class="form-group">
+                            <button class="btn-big" style="text-align: center;" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>   
+            </form>                    
+        </div>
+    </div>
+</div>
+
+<!-- ENDFORM -->
+    
+ 
+{% endblock content %}

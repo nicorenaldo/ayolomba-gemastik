@@ -1,0 +1,405 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- Pagelist -->
+<div class="pagelist">
+    <div class="container">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'browse' %}"><i class="fas fa-angle-right"></i>Browse</i></a>
+        <a href="{%url 'browse'%}?category={{detail_lomba.category.id}}"><i class="fas fa-angle-right"></i>{{detail_lomba.category}}</a>
+        <a><i class="fas fa-angle-right"></i>{{ detail_lomba.name }}</a>
+    </div> <!-- end of container -->
+</div> <!-- end of pagelist -->
+<!-- end of pagelist -->
+
+<!-- Detail -->
+
+<div class="single-post-area">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8">
+             <div class="single-post">
+                <a href="{{ detail_lomba.image.url }}" class="popup-link" data-effect="fadeIn">
+                    <div class="image-container">
+                        <div class="feature-img">
+                           <img class="img-fluid poster" src="{{ detail_lomba.image.url }}" alt="">
+                        </div>
+                    </div>
+                </a>
+                <div class="blog_details">
+                     <div class="row mb-3">
+                        <div class="col-lg-11 col-sm-11 col-10">
+                           <h2>{{detail_lomba.name}}</h2>
+                           <ul class="blog-info-link">
+                              <li><a href="#"><i class="far fa-user"></i> By {{detail_lomba.owner}}</a></li>
+                              <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
+                              {% if detail_lomba.owner == user %}
+                              <li><a href="{% url 'competitions:author-update' slug=detail_lomba.slug pk=detail_lomba.pk %}"><i class='fas fa-edit'></i> Edit</a></li>
+                              <li><a href="{% url 'competitions:author-delete' slug=detail_lomba.slug pk=detail_lomba.pk %}"><i class='fas fa-trash-alt'></i> Hapus</a></li>
+                              {% endif %}
+                          </ul>
+                        </div>
+                        <div class="col-lg-1 col-sm-1 col-2">
+                           <form method='POST' action="{% url 'competitions:bookmark' slug=detail_lomba.slug pk=detail_lomba.pk %}">
+                              {% csrf_token %}
+                              <input type='hidden' name='lomba' value={{ detail_lomba.pk }}>
+                              {% if detail_lomba in user.profile.favorite.all %}
+                                 <button type='submit' class='btn-transparent'><i class='fas fa-star'></i>{{detail_lomba.profile_set.count}}</button>
+                              {% else %}
+                                 <button type='submit' class='btn-transparent'><i class='far fa-star'></i>{{detail_lomba.profile_set.count}}</button>
+                              {% endif %}
+                           </form>
+                        </div>
+                     </div>
+                     <div class="info d-lg-none">
+                        <h5>Informasi Umum</h5>
+                        <p class="info-title">Deadline: </p><p class="info-text">{{detail_lomba.deadline}}</p>
+                        <p class="info-title">Lokasi: </p><p class="info-text">{{detail_lomba.location}}</p>
+                        <p class="info-title">Penyelenggara: </p><p class="info-text"> {{detail_lomba.owner}}</p>
+                        <p class="info-title">Tanggal Lomba: </p><p class="info-text"> {{detail_lomba.deadline}}</p>
+                        <p class="info-title">Contact Person: </p><p class="info-text"> {{detail_lomba.contact}}</p>
+                    </div>
+                    <p>
+                        {{detail_lomba.description}}
+                    </p>
+                    <div class="quote-wrapper">
+                      <div class="quotes">
+                         MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                         should have to spend money on boot camp when you can get the MCSE study materials yourself at
+                         a fraction of the camp price. However, who has the willpower to actually sit through a
+                         self-imposed MCSE training.
+                      </div>
+                    </div>
+                </div>
+             </div>
+             <div class="navigation-top">
+                <div class="d-sm-flex justify-content-between text-center">
+                   <p class="like-info"><span class="align-middle"><i class="far fa-heart"></i></span> Lily and 4
+                      people like this</p>
+                   <div class="col-sm-4 text-center my-2 my-sm-0">
+                      <!-- <p class="comment-count"><span class="align-middle"><i class="far fa-comment"></i></span> 06 Comments</p> -->
+                   </div>
+                   <ul class="social-icons">
+                      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                      <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                   </ul>
+                </div>
+                <div class="navigation-area">
+                   <div class="row">
+                      <div
+                         class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                         <div class="thumb">
+                            <a href="{{prev.get_absolute_url}}">
+                               <img class="img-fluid thumbnail-recent" src="{{prev.image.url}}" alt="">
+                            </a>
+                         </div>
+                         <div class="arrow">
+                            <a href="{{prev.get_absolute_url}}">
+                               <span class="lnr text-white ti-arrow-left"></span>
+                            </a>
+                         </div>
+                         <div class="detials">
+                            <p>Prev Post</p>
+                            <a href="{{prev.get_absolute_url}}">
+                               <h4>{{prev.name}}</h4>
+                            </a>
+                         </div>
+                      </div>
+                      <div
+                         class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                         <div class="detials">
+                            <p>Next Post</p>
+                            <a href="{{next.get_absolute_url}}">
+                               <h4>{{next.name}}</h4>
+                            </a>
+                         </div>
+                         <div class="arrow">
+                            <a href="{{next.get_absolute_url}}">
+                               <span class="lnr text-white ti-arrow-right"></span>
+                            </a>
+                         </div>
+                         <div class="thumb">
+                            <a href="{{next.get_absolute_url}}">
+                               <img class="img-fluid thumbnail-recent" src="{{next.image.url}}" alt="">
+                            </a>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="blog-author">
+                <div class="media align-items-center">
+                   <img src="{% static 'images/author.png' %}" alt="">
+                   <div class="media-body">
+                      <a href="#">
+                         <h4>Harvard milan</h4>
+                      </a>
+                      <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
+                         our dominion twon Second divided from</p>
+                   </div>
+                </div>
+             </div>
+             <div class="comments-area">
+                <h4>05 Comments</h4>
+                <div class="comment-list">
+                   <div class="single-comment justify-content-between d-flex">
+                      <div class="user justify-content-between d-flex">
+                         <div class="thumb">
+                            <img src="{% static 'images/comment_1.png' %}" alt="">
+                         </div>
+                         <div class="desc">
+                            <p class="comment">
+                               Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                               Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                            </p>
+                            <div class="d-flex justify-content-between">
+                               <div class="d-flex align-items-center">
+                                  <h5>
+                                     <a href="#">Emilly Blunt</a>
+                                  </h5>
+                                  <p class="date">December 4, 2017 at 3:12 pm </p>
+                               </div>
+                               <div class="reply-btn">
+                                  <a href="#" class="btn-reply text-uppercase">reply</a>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="comment-list">
+                   <div class="single-comment justify-content-between d-flex">
+                      <div class="user justify-content-between d-flex">
+                         <div class="thumb">
+                            <img src="{% static 'images/comment_2.png' %}" alt="">
+                         </div>
+                         <div class="desc">
+                            <p class="comment">
+                               Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                               Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                            </p>
+                            <div class="d-flex justify-content-between">
+                               <div class="d-flex align-items-center">
+                                  <h5>
+                                     <a href="#">Emilly Blunt</a>
+                                  </h5>
+                                  <p class="date">December 4, 2017 at 3:12 pm </p>
+                               </div>
+                               <div class="reply-btn">
+                                  <a href="#" class="btn-reply text-uppercase">reply</a>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="comment-list">
+                   <div class="single-comment justify-content-between d-flex">
+                      <div class="user justify-content-between d-flex">
+                         <div class="thumb">
+                            <img src="{% static 'images/comment_3.png' %}" alt="">
+                         </div>
+                         <div class="desc">
+                            <p class="comment">
+                               Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                               Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                            </p>
+                            <div class="d-flex justify-content-between">
+                               <div class="d-flex align-items-center">
+                                  <h5>
+                                     <a href="#">Emilly Blunt</a>
+                                  </h5>
+                                  <p class="date">December 4, 2017 at 3:12 pm </p>
+                               </div>
+                               <div class="reply-btn">
+                                  <a href="#" class="btn-reply text-uppercase">reply</a>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="comment-form">
+                <h4>Leave a Reply</h4>
+                <form class="form-contact comment_form" action="#" id="commentForm">
+                   <div class="row">
+                      <div class="col-12">
+                         <div class="form-group">
+                            <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                               placeholder="Write Comment"></textarea>
+                         </div>
+                      </div>
+                      <div class="col-sm-6">
+                         <div class="form-group">
+                            <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                         </div>
+                      </div>
+                      <div class="col-sm-6">
+                         <div class="form-group">
+                            <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                         </div>
+                      </div>
+                      <div class="col-12">
+                         <div class="form-group">
+                            <input class="form-control" name="website" id="website" type="text" placeholder="Website">
+                         </div>
+                      </div>
+                   </div>
+                   <div class="form-group">
+                      <button type="submit" class="btn-contact-form">Send Message</button>
+                   </div>
+                </form>
+             </div>
+          </div>
+          <div class="col-lg-4">
+             <div class="blog_right_sidebar">
+                <div class="info d-none d-lg-block">
+                    <h5>Informasi Umum</h5>
+                    <p class="info-title">Deadline: </p><p class="info-text">{{detail_lomba.deadline}}</p>
+                    <p class="info-title">Lokasi: </p><p class="info-text">{{detail_lomba.location}}</p>
+                    <p class="info-title">Penyelenggara: </p><p class="info-text"> {{detail_lomba.owner}}</p>
+                    <p class="info-title">Tanggal Lomba: </p><p class="info-text"> {{detail_lomba.deadline}}</p>
+                    <p class="info-title">Contact Person: </p><p class="info-text"> {{detail_lomba.contact}}</p>
+                </div>
+                <!-- <aside class="single_sidebar_widget search_widget">
+                   <form action="#">
+                      <div class="form-group">
+                         <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder='Search Keyword'
+                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                            <div class="input-group-append">
+                               <button class="btn" type="button"><i class="ti-search"></i></button>
+                            </div>
+                         </div>
+                      </div>
+                      <button class="btn-sidebar w-100" type="submit">Search</button>
+                   </form>
+                </aside> -->
+                <aside class="single_sidebar_widget post_category_widget">
+                   <h4 class="widget_title">Category</h4>
+                   <ul class="list cat-list">
+                     {% for Kategori in list_kategori %}
+                      <li>
+                         <a href="{%url 'browse'%}?category={{Kategori.id}}" class="d-flex">
+                            <p>{{ Kategori.category_name }}   ({{Kategori.totalkategori}})</p>
+                         </a>
+                      </li>
+                      {% endfor %}
+                   </ul>
+                </aside>
+
+                <aside class="single_sidebar_widget popular_post_widget">
+                   <h4 class="widget_title">Related Post</h4>
+                     {% for Lomba in related %}
+                        <a class="media post_item" href="{{ Lomba.get_absolute_url }}">   
+                           <div class="media post_item">
+                              <img class='thumbnail-recent' src="{{ Lomba.image.url }}" alt="post">
+                              <div class="media-body">
+                                 <h5>{{Lomba.name}}</h5>
+                                 <p>January 12, 2019</p>
+                              </div>
+                           </div>
+                        </a>
+                     {% endfor %}
+                </aside>
+                
+                <aside class="single_sidebar_widget popular_post_widget">
+                  <h4 class="widget_title">Recent Post</h4>
+                    {% for Lomba in recent %}
+                       <a class="media post_item" href="{{ Lomba.get_absolute_url }}">   
+                          <div class="media post_item">
+                             <img class='thumbnail-recent' src="{{ Lomba.image.url }}" alt="post">
+                             <div class="media-body">
+                                <h5>{{Lomba.name}}</h5>
+                                <p>January 12, 2019</p>
+                             </div>
+                          </div>
+                       </a>
+                    {% endfor %}
+               </aside>
+                <!-- <aside class="single_sidebar_widget tag_cloud_widget">
+                   <h4 class="widget_title">Tag Clouds</h4>
+                   <ul class="list">
+                      <li>
+                         <a href="#">project</a>
+                      </li>
+                      <li>
+                         <a href="#">love</a>
+                      </li>
+                      <li>
+                         <a href="#">technology</a>
+                      </li>
+                      <li>
+                         <a href="#">travel</a>
+                      </li>
+                      <li>
+                         <a href="#">restaurant</a>
+                      </li>
+                      <li>
+                         <a href="#">life style</a>
+                      </li>
+                      <li>
+                         <a href="#">design</a>
+                      </li>
+                      <li>
+                         <a href="#">illustration</a>
+                      </li>
+                   </ul>
+                </aside> -->
+                <!-- <aside class="single_sidebar_widget instagram_feeds">
+                   <h4 class="widget_title">Instagram Feeds</h4>
+                   <ul class="instagram_row flex-wrap">
+                      <li>
+                         <a href="#">
+                            <img class="img-fluid" src="{% static 'images/post_5.png' %}" alt="">
+                         </a>
+                      </li>
+                      <li>
+                         <a href="#">
+                            <img class="img-fluid" src="{% static 'images/post_6.png' %}" alt="">
+                         </a>
+                      </li>
+                      <li>
+                         <a href="#">
+                            <img class="img-fluid" src="{% static 'images/post_7.png' %}" alt="">
+                         </a>
+                      </li>
+                      <li>
+                         <a href="#">
+                            <img class="img-fluid" src="{% static 'images/post_8.png' %}" alt="">
+                         </a>
+                      </li>
+                      <li>
+                         <a href="#">
+                            <img class="img-fluid" src="{% static 'images/post_9.png' %}" alt="">
+                         </a>
+                      </li>
+                      <li>
+                         <a href="#">
+                            <img class="img-fluid" src="{% static 'images/post_10.png' %}" alt="">
+                         </a>
+                      </li>
+                   </ul>
+                </aside> -->
+                <!-- <aside class="single_sidebar_widget newsletter_widget">
+                   <h4 class="widget_title">Newsletter</h4>
+                   <form action="#">
+                      <div class="form-group">
+                         <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                      </div>
+                      <button class="btn-sidebar w-100"
+                         type="submit">Subscribe</button>
+                   </form>
+                </aside> -->
+             </div>
+          </div>
+       </div>
+    </div>
+</div>
+    
+{% endblock content %}

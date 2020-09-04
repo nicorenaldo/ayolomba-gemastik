@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+{% block content %}
+<button class="tablinks" id="defaultOpen" style='opacity: 0;' onclick="openTab(event, 'Tab1')">Profile</button>
+<div class="limiter submit">
+    <div class="container-login100 flex-column">
+        <div class="header-submit d-flex justify-content-center">
+            <div class="text-container">
+                <h1 class="login100-form-title">Hai <span class="pink">{{user.profile.firstname}}</span>, silahkan isi detail perlombaan</h1>
+            <p>Silahkan isi form di bawah ini dengan jelas dan sebenar-benarnya. Tim Ayolomba! akan melakukan pemeriksaan mengenai lomba yang kamu pasang dan lomba akan dipost setelah terverifikasi.</p>
+            </div>
+        </div>
+
+        <div class="wrap-login100">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="content-section">
+                    <div id ="Tab1" class="tabcontent login100-form">
+                        {% for f in form.visible_fields %}
+                            {% if f.name == "name" or f.name == "category" or f.name == "participant_level" or f.name == "competitions_level"   %}
+                                <div class="form-group">
+                                    <label for="{{ f.id_for_label }}">{{ f.label}}</label>
+                                    {{ f|add_class:'form-control filestyle' }}
+                                    {% for error in f.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                            {% endif %} 
+                        {% endfor %}
+                        <div class="form-group">
+                            <button class="tablinks btn-big" onclick="openTab(event, 'Tab2')"style="text-align: center;" type="button">Next</button>
+                        </div>
+                    </div>
+                    <div id ="Tab2" class="tabcontent login100-form">
+                        {% for f in form.visible_fields %}
+                        {% if f.name == "deadline" or f.name == "tanggalpelaksanaan" or f.name == "location" or f.name == "contact" %}
+                                <div class="form-group">
+                                    <label for="{{ f.id_for_label }}">{{ f.label}}</label>
+                                    {{ f|add_class:'form-control filestyle' }}
+                                    {% for error in f.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                            {% endif %} 
+                        {% endfor %}
+                        <div class="form-group">
+                            <button class="tablinks btn-big" onclick="openTab(event, 'Tab1')"style="text-align: center;" type="button">Previous</button>
+                            <button class="tablinks btn-big" onclick="openTab(event, 'Tab3')"style="text-align: center;" type="button">Next</button>
+                        </div>
+                    </div>
+                    <div id ="Tab3" class="tabcontent login100-form">
+                        {% for f in form.visible_fields %}
+                            {% if f.name == "description" or f.name == "description2" or f.name == "tags" or f.name == "link" or f.name == "image"   %}
+                                <div class="form-group">
+                                    <label for="{{ f.id_for_label }}">{{ f.label}}</label>
+                                    {{ f|add_class:'form-control filestyle' }}
+                                    {% for error in f.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                            {% endif %} 
+                        {% endfor %}
+                        <div class="form-group">
+                            <button class="tablinks btn-big" onclick="openTab(event, 'Tab2')"style="text-align: center;" type="button">Previous</button>
+                            <button class="btn-big" style="text-align: center;" type="submit">Submit</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>   
+            </form>                    
+        </div>
+    </div>
+</div>
+
+<!-- ENDFORM -->
+    
+ 
+{% endblock content %}

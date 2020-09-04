@@ -1,0 +1,369 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}    
+
+<div class="limiter dashboard">
+    <div class="container-dashboard flex-column border-top">
+        <!--**********************************
+            Content body start
+        ***********************************-->
+            <div class="container-fluid">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="row">
+                    <div class="col-lg-4 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center mb-4">
+                                    <img class="mr-3 rounded-circle account-img" src="{{ user.profile.image.url }}" width="80" height="80" alt="">
+                                    <div class="media-body">
+                                        <h4 class="mb-0">{{ user.profile.firstname }} {{ user.profile.lastname }} <i class='fas fa-pencil-alt'></i></h4>
+                                        <p class="text-muted mb-0">{{ user.email }}</p>
+                                    </div>
+                                </div>
+                                <div class="user-menu">
+                                    <ul class="menu-list">
+                                        <li class="paperclip"> <b>Lomba Favorit </b>{{user.profile.favorite.count}} Lomba</li>
+                                        <li class="copy"> <b>Posts </b>{{user.profile.favorite.count}} Lomba</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="card">
+                            <div class="card-body">
+                                <form autocomplete="off" class="form-overview">
+                                    <div class="inner-row description">
+                                        <aside>
+                                            <h4 class="alt hint--top" data-hint="Tell us more about yourself so we can find a good fit for u">
+                                                Keahlian
+                                                <a href="#" class="add">Add New</a>
+                                            </h4>
+                                        </aside>
+                                        <div class="empty-list">
+                                            Tambahkan keahlian
+                                            <input type="hidden" name="[seller_profile]" value="">
+                                        </div>
+                                        <input type="hidden" value="0">
+                                    </div>
+                                </form>
+                                <form autocomplete="off" class="form-overview">
+                                    <div class="inner-row description">
+                                        <aside>
+                                            <h4 class="alt hint--top" data-hint="Tell us more about yourself so we can find a good fit for u">
+                                                Pendidikan
+                                                <a href="#" class="add">Add New</a>
+                                            </h4>
+                                        </aside>
+                                        <div class="empty-list">
+                                            Tambahkan pendidikan
+                                            <input type="hidden" name="[seller_profile]" value="">
+                                        </div>
+                                        <input type="hidden" value="0">
+                                    </div>
+                                </form>
+                                <form autocomplete="off" class="form-overview">
+                                    <div class="inner-row description">
+                                        <aside>
+                                            <h4 class="alt hint--top" data-hint="Tell us more about yourself so we can find a good fit for u">
+                                                Hobby
+                                                <a href="#" class="add">Add New</a>
+                                            </h4>
+                                        </aside>
+                                        <div class="empty-list">
+                                            Tambahkan Hobby
+                                            <input type="hidden" name="[seller_profile]" value="">
+                                        </div>
+                                        <input type="hidden" value="0">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>  
+                        <div class="card">
+                            <div class="card-body todo-request">
+                                <h4>Anda memiliki usulan lomba menarik?</h4>
+                                <p class="post-request">Ajukan lomba yang belum pernah ada sebelumnya.</p>
+                                <a class="btn-big lesspad" href="#">Post a Request</a>
+                            </div>
+                        </div>  
+                        <div class="card">
+                            <div class="card-body todo-advice">
+                                <h4>Berikan kami saran</h4>
+                                <form action="#" class="form-profile">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="textarea" id="textarea" cols="30" rows="5" placeholder="Write a message"></textarea>
+                                    </div>
+                                </form>
+                                <a class="btn-big lesspad btn-pink" href="#">Kirim Saran</a>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="col-lg-8 col-xl-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2><span class="kuning">Selamat datang</span> {{ user.profile.firstname }}</h2>
+                                <p class="p-large">Hidup memang gak pasti, tapi akan jadi pasti jika kita berani bergerak &
+                                    mengusahakannya. Semangat! Oh ya tambahan, love my hedgehog.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card bkgd-kuning">
+                                    <div class="card-body">
+                                        <h2>Isi apa</h2>
+                                        <p class="p-large">Ntah isi apa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card bkgd-pink">
+                                    <div class="card-body">
+                                        <h2>Isi apa</h2>
+                                        <p class="p-large">Ntah isi apa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card bkgd-kuning">
+                                    <div class="card-body">
+                                        <h2>Isi apa</h2>
+                                        <p class="p-large">Ntah isi apa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card bkgd-pink">
+                                    <div class="card-body">
+                                        <h2>Isi apa</h2>
+                                        <p class="p-large">Ntah isi apa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-sm-6 col-xxl-6">
+                                <div class="card">
+                                    <div class="card-body px-0">
+                                        <h4 class="card-title px-4 mb-3">Todo</h4>
+                                        <div class="todo-list">
+                                            <div class="tdl-holder">
+                                                <div class="tdl-content">
+                                                    <ul id="todo_list">
+                                                        <li><label><input type="checkbox"><i></i><span>Get up </span><a href='#' class="trash"></a></label></li>
+                                                        <li><label><input type="checkbox" checked><i></i><span>Stand up</span><a href='#' class="trash"></a></label></li>
+                                                        <li><label><input type="checkbox"><i></i><span>Don't give up the fight.</span><a href='#' class="trash"></a></label></li>
+                                                        <li><label><input type="checkbox" checked><i></i><span>Do something else</span><a href='#' class="trash"></a></label></li>
+                                                        <li><label><input type="checkbox"><i></i><span>Get up </span><a href='#' class="trash"></a></label></li>
+                                                        <li><label><input type="checkbox" checked><i></i><span>Stand up</span><a href='#' class="trash"></a></label></li>
+                                                        <li><label><input type="checkbox"><i></i><span>Don't give up the fight.</span><a href='#' class="trash"></a></label></li>
+                                                        <li><label><input type="checkbox" checked><i></i><span>Do something else</span><a href='#' class="trash"></a></label></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-sm-6 col-xxl-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Notifications</h4>
+                                        <div id="notifications">
+                                            <div class="media border-bottom-1 pt-3 pb-3">
+                                                <img width="35" src="{% static '/images/avatar/1.jpg' %}" class="mr-3 rounded-circle">
+                                                <div class="media-body">
+                                                    <h5>Received New Order</h5>
+                                                    <p class="mb-0">I shared this on my fb wall a few months back,</p>
+                                                </div><span class="text-muted ">April 24, 2018</span>
+                                            </div>
+                                            <div class="media border-bottom-1 pt-3 pb-3">
+                                                <img width="35" src="{% static './images/avatar/2.jpg' %}" class="mr-3 rounded-circle">
+                                                <div class="media-body">
+                                                    <h5>iPhone develered</h5>
+                                                    <p class="mb-0">I shared this on my fb wall a few months back,</p>
+                                                </div><span class="text-muted ">April 24, 2018</span>
+                                            </div>
+                                            <div class="media border-bottom-1 pt-3 pb-3">
+                                                <img width="35" src="{% static '/images/avatar/1.jpg' %}" class="mr-3 rounded-circle">
+                                                <div class="media-body">
+                                                    <h5>Received New Order</h5>
+                                                    <p class="mb-0">I shared this on my fb wall a few months back,</p>
+                                                </div><span class="text-muted ">April 24, 2018</span>
+                                            </div>
+                                            <div class="media border-bottom-1 pt-3 pb-3">
+                                                <img width="35" src="{% static './images/avatar/2.jpg' %}" class="mr-3 rounded-circle">
+                                                <div class="media-body">
+                                                    <h5>iPhone develered</h5>
+                                                    <p class="mb-0">I shared this on my fb wall a few months back,</p>
+                                                </div><span class="text-muted ">April 24, 2018</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="form-wrapper">
+                                <div class="top-section">
+                                    <h4 class="title">Profile Information<b>(private)</b></h4>
+                                    <p class="sub-title">Tell us a bit about your needs and get customized recommendations.<br>
+                                        Don’t worry, this information will remain private, and will not be displayed on the platform
+                                    </p>
+                                </div>
+                                <form class="buyer-profile-form">
+                                    <div class="question-container">
+                                        <p class="question-title">Which option best describes you?</p>
+                                        <div>
+                                            <label class="fit-radio fake-radio-green radio-text">
+                                                <input type="radio" name="buyerDefinition" value="business">
+                                                <span class="radio-img"></span>
+                                                I own a business
+                                            </label>
+                                            <label class="fit-radio fake-radio-green radio-text">
+                                                <input type="radio" name="buyerDefinition" value="freelancer">
+                                                <span class="radio-img"></span>
+                                                I’m a freelancer
+                                            </label>
+                                            <label class="fit-radio fake-radio-green radio-text">
+                                                <input type="radio" name="buyerDefinition" value="employee">
+                                                <span class="radio-img"></span>
+                                                I’m an employee
+                                            </label>
+                                            <label class="fit-radio fake-radio-green radio-text">
+                                                <input type="radio" name="buyerDefinition" value="agency">
+                                                <span class="radio-img"></span>
+                                                I work at an agency (serve external clients)
+                                            </label>
+                                            <label class="fit-radio fake-radio-green radio-text">
+                                                <input type="radio" name="buyerDefinition" value="personal">
+                                                <span class="radio-img"></span>
+                                                I use Fiverr for personal needs
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="question-container">
+                                        <p class="question-title">
+                                            Which industry does the workplace/business belong to?</p>
+                                        <div>
+                                            <input type="text" value="" autocomplete="off" aria-autocomplete="list" aria-controls="react-autowhatever-1" class="react-autosuggest__input" placeholder="ex: Internet Security">
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="actions-container ">
+                                    <a href="#!" class="btn-big">Save Changes<a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <a href="{% url 'profile:email'  %}" class="card-link">EMAIL</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="competitions-card">
+                                    <div class="container">
+                                        <p class="p-large">Your Bookmarked</p>
+                                        <div class="cards-container">
+                                            {% for Lomba in user.profile.favorite.all %}
+                                            <div class="card-wrapper">
+                                                <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                                                <div class="card-content">
+                                                    <h4 class="max-lines">{{Lomba.name}}</h4>
+                                                    <h6>{{Lomba.location}}</h6>
+                                                    <h6>{{Lomba.category}}</h6>
+                                                </div>
+                                                <div class="card-info">
+                                                    <div>
+                                                        <i class='fas fa-star'></i>{{Lomba.profile_set.count}} Bookmark
+                                                    </div>
+                                                    <div>
+                                                        <a href="{{ Lomba.get_absolute_url }}" class="card-link">See more</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="competitions-card">
+                                    <div class="container">
+                                        <p class="p-large">LOMBAMU APA AJA</p>
+                                        <div class="cards-container">
+                                            {% for Lomba in list_lomba %}
+                                            <div class="card-wrapper">
+                                                <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                                                <div class="card-content">
+                                                    <h4 class="max-lines">{{Lomba.name}}</h4>
+                                                    <h6>{{Lomba.location}}</h6>
+                                                    <h6>{{Lomba.category}}</h6>
+                                                </div>
+                                                <div class="card-info">
+                                                    <div>
+                                                        <i class='fas fa-star'></i>{{Lomba.profile_set.count}} Bookmark
+                                                    </div>
+                                                    <div>
+                                                        <a href="{{ Lomba.get_absolute_url }}" class="card-link">See more</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="competitions-card">
+                                    <div class="container">
+                                        <p class="p-large">Recomendation</p>
+                                        <div class="cards-container">
+                                            {% for Lomba in listlomba %}
+                                            <div class="card-wrapper">
+                                                <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                                                <div class="card-content">
+                                                    <h4 class="max-lines">{{Lomba.name}}</h4>
+                                                    <h6>{{Lomba.location}}</h6>
+                                                    <h6>{{Lomba.category}}</h6>
+                                                </div>
+                                                <div class="card-info">
+                                                    <div>
+                                                        <i class='fas fa-star'></i>{{Lomba.profile_set.count}} Bookmark
+                                                    </div>
+                                                    <div>
+                                                        <a href="{{ Lomba.get_absolute_url }}" class="card-link">See more</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        <!--**********************************
+            Content body end
+        ***********************************-->
+    </div>
+</div>
+
+{% endblock content %}
+

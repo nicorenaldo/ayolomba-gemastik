@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}    
+
+
+<div class="limiter logout">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="content-section text-center">
+                <h2>You have been logged out</h2>
+                <div class="border-top pt-3">
+                    <h5>
+                        <a href="{% url 'login' %}">Log In Again</a>
+                    </h5>
+                </div>
+            </div>
+        </div>                       
+    </div>
+</div>
+
+{% endblock content %}

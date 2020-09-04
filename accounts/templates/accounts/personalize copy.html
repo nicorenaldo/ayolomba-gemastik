@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+{% block content %}    
+<button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Profile')">Profile</button>
+<div class="limiter login">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <h2 class="login100-form-title">
+                Ayo<span class="kuning">Lomba!</span>
+            </h2>
+            <div class="content-section">
+                <div id ="Profile" class="tabcontent card">
+                    <div class="login100-form">
+                        <form method="POST" >
+                            {% csrf_token %}
+                                                            
+                            {% for field in p_form.visible_fields %}
+                                {% if field.name == "image" %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label}}</label>
+                                    {{ field|add_class:'form-control filestyle' }}
+                                    {% for error in field.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label}}</label>
+                                    {{ field|add_class:'form-control' }}
+                                    {% for error in field.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>  
+                                {% endif %} 
+                            {% endfor %}
+                        </form>
+                        <div class="form-group">
+                            <button class="tablinks btn-big-lg" onclick="openTab(event, 'Notification')">Next</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div id ="Notification" class="tabcontent card">
+                    Haihai
+                    <div class="form-group">
+                        <button class="tablinks btn-big-lg" onclick="openTab(event, 'Password')">Next</button>
+                    </div>
+                </div>
+                
+                <div id ="Password" class="tabcontent card">
+                    <form method="POST" class="login100-form">
+                        {% csrf_token %}
+                        {{ pass_form |crispy}}
+                    </form>
+                    <div class="form-group">
+                        <button class="btn-big-lg" name='btnform1' type="submit">Submit</button>
+                    </div>
+                </div>
+                
+            </div>                       
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
+
+

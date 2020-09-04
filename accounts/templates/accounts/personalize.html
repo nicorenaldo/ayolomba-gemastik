@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+{% block content %}
+  
+
+<div class="limiter login">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <h2 class="login100-form-title">
+                Ayo<span class="kuning">Lomba!</span>
+            </h2>
+            <form method="POST">
+                <div class="content-section">
+                    <div id ="Profile" class="card">
+                        <div class="login100-form">
+                        
+                            {% csrf_token %}
+                                                            
+                            {% for field in p_form.visible_fields %}
+                                {% if field.name == "image" %}
+                                
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label}}</label>
+                                    {{ field|add_class:'form-control filestyle' }}
+                                    {% for error in field.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                
+                                {% else %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label}}</label>
+                                    {{ field|add_class:'form-control' }}
+                                    {% for error in field.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>  
+                                {% endif %} 
+                            {% endfor %}
+                            
+                            <div class="form-group">
+                                <button class="btn-big-lg" name='btnform1' type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </form>                      
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

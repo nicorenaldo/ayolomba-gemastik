@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="content-section text-center">
+            <div class="page404 curvey">
+                <img class="img-fluid" src="{% static 'images/illustration/404-ayolomba.svg' %}" alt="alternative">
+            </div>
+            <h2>Halaman tidak ditemukan</h2>
+            <div class="border-top pt-3">
+                <h5>
+                    <a href="{% url 'login' %}">Maaf, kami tidak dapat menemukan halaman yang Anda cari.</a>
+                </h5>
+            </div>
+        </div>                    
+    </div>
+</div>
+
+{% endblock content %}

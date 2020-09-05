@@ -31,8 +31,8 @@ class Lomba(models.Model):
     jumlahhadiah = models.DecimalField(max_digits=9 , decimal_places=2)
 
     created = models.DateTimeField(default=timezone.now)
-    deadline = models.DateTimeField()
-    tanggalpelaksanaan = models.DateTimeField()
+    deadline = models.DateField()
+    tanggalpelaksanaan = models.DateField()
     
     location = models.CharField(max_length=100)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -48,9 +48,6 @@ class Lomba(models.Model):
     participant_level = models.CharField(max_length=50,
        choices=PARTI_LEVEL,
        default='umum',)
-
-    active = models.BooleanField(default=True)
-
 
     image = models.ImageField(upload_to='poster/' , blank=True , null=True)
 
@@ -69,14 +66,12 @@ class Lomba(models.Model):
 
     @property
     def days_remaining(self):
-        today = datetime.today()
+        today = date.today()
         result = self.deadline - today
         if result.days > 0 :
             return result.days
         else:
             return abs(result.days)
-            
-
 
 class Kategori(models.Model):
     #Contains all category

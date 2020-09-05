@@ -2692,6 +2692,62 @@ input[type="radio"]{
 	border: 1px solid #DEDEDE;
 }
 
+.steps-navigation {
+    align-content: center;
+    align-items: center;
+    counter-reset: stepCount;
+    display: flex;
+    justify-content: space-around;
+    margin: 0px auto 50px;
+    padding-left: 40px;
+}
+
+.steps-navigation a, .steps-navigation span {
+    background: #FAA10F;
+    color: #fff;
+    content: ' ';
+    display: flex;
+    flex-grow: 1;
+    height: 1px;
+    line-height: 1em;
+    margin: 0;
+    position: relative;
+    text-align: right;
+}
+
+.steps-navigation a::before, .steps-navigation span::before {
+    background: #FAA10F;
+    border-radius: 50%;
+    color: #fff;
+    content: counter(stepCount);
+    counter-increment: stepCount;
+    height: 2em;
+    left: -2em;
+    line-height: 2em;
+    position: absolute;
+    text-align: center;
+    top: -.85em;
+    width: 2em;
+}
+
+.steps-navigation a.active, .steps-navigation span.active {
+    background-color: #372D21;
+}
+
+.steps-navigation a.active~a, .steps-navigation a.active~span, .steps-navigation span.active~a, .steps-navigation span.active~span {
+    background-color: #372D21;
+}
+
+.steps-navigation a.active~a::before, .steps-navigation a.active~span::before, .steps-navigation span.active~a::before, .steps-navigation span.active~span::before {
+    background-color: #372D21;
+}
+
+.steps-navigation a:last-child, .steps-navigation span:last-child {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
 .confirm-delete .btn-outline-secondary {
 	color: #6c757d;
 	border-color: #6c757d;
@@ -2703,6 +2759,16 @@ input[type="radio"]{
 	border-color: #6c757d;
 	text-decoration: none !important;
   }
+
+.page404.curvey {
+	background: url('../images/curve5.svg') center center no-repeat;
+	background-size: 500px 300px;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+.page404 img{
+	width: 100%;
+}
 /*****************************/
 /*     15. Dashboard         */
 /*****************************/	
@@ -2965,7 +3031,7 @@ h3.hint--top:after {
 
 .todo-request p:after {
     content: '';
-    background: transparent url(../images/request-lomba.svg) no-repeat 0 0;
+    background: transparent url(../images/request-lomba-icon.svg) no-repeat 0 0;
     background-size: 320px 100px;
     height: 100px;
     width: 120px;

@@ -15,6 +15,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 # Create your views here.
 
+def custom_404(request, exception=None):
+    return HttpResponse('Error handler content', status=404)
+
 def about (request):    
     template = 'competitions/about.html'
     return render(request, template)

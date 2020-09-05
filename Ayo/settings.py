@@ -25,7 +25,7 @@ SECRET_KEY = 'wcswg5)(5k+u8079h3a#w=r0kh%!k+5lp^t9%86qd+pwgh8@^&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ayolomba-gemastik.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ayolomba-gemastik.herokuapp.com']
 
 
 # Application definition
@@ -70,7 +70,7 @@ ROOT_URLCONF = 'Ayo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -34,6 +34,9 @@ Colors:
 /******************************/
 /*     01. General Styles     */
 /******************************/
+::-webkit-scrollbar {
+    display: none;
+}
 body,
 html {
     width: 100%;
@@ -136,6 +139,15 @@ a.white {
 .btn-solid-lg:hover {
 	background-color: transparent;
 	color: #FF5467;
+}
+
+.basic-1 .btn-solid-lg {
+	background-color: #ff374e;
+}
+
+.basic-1 .btn-solid-lg:hover {
+	color: #ffffff;
+	background-color: #FF5467;
 }
 
 .btn-solid-lg .fas {
@@ -800,6 +812,16 @@ select::-ms-expand {
 	margin-top: -2rem;
 }
 
+.header-content .tentangkami.curvey {
+	background: url('../images/curve4.svg') top right no-repeat;
+	background-size: contain;
+	margin-top: 0rem;
+}
+
+.header-content .tentangkami .illustration {
+	padding-top: 0rem;
+}
+
 .header-content .illustration {
 	padding-top: 2.5rem;
 }
@@ -826,8 +848,8 @@ select::-ms-expand {
 /*     05. ABOUT         */
 /*************************/
 .about {
-	padding-top: 3.5rem;
-	padding-bottom: 3.5rem;
+	padding-top: 3rem;
+	padding-bottom: 6rem;
 }
 
 .about .illustration {
@@ -841,6 +863,18 @@ select::-ms-expand {
 
 .about .curvey {
 	background: url('../images/curve2.svg') center center no-repeat;
+	background-size: contain;
+	margin-top: -2rem;
+}
+
+.about .berawal.curvey {
+	background: url('../images/curve3.svg') center center no-repeat;
+	background-size: contain;
+	margin-top: -2rem;
+}
+
+.about .solusi.curvey {
+	background: url('../images/curve4.svg') center center no-repeat;
 	background-size: contain;
 	margin-top: -2rem;
 }
@@ -966,7 +1000,7 @@ select::-ms-expand {
 /*     8. Remokendasi      */
 /***************************/
 .slider-2 {
-	padding-top: 6.875rem;
+	padding-top: 2rem;
 	padding-bottom: 6.875rem;
 	background-color: #fff;
 }
@@ -1213,20 +1247,33 @@ select::-ms-expand {
 	z-index: -1; 
 }
 
-.footer_area .footer_logo {
-	text-align: center; 
+.footer-panel{
+	display:flex;
 }
 
-.footer_area .footer_logo img {
-	height: 3rem; 
+.footer-item-panel {
+	margin-top : auto;
+	margin-bottom : auto;
 }
 
-.footer_area .footer_logo h5 {
-   	font-size: 20px;
-   	color: #372D21;
-   	margin-top: 20px;
-	text-transform: uppercase;
+.footer-area .panel-title {
+    color: #372D21;
+	margin-top: 0;
+    margin-bottom: 0;
+	font-size: 16px;
 }
+
+#logo-footer{
+	text-align:center;
+}
+
+.footer-link li {
+  padding: 10px 0;
+}
+
+.footer-link li a:hover{
+	color: #FF5467;
+  }
 
 .footer_area .footer_social {
    	text-align: center;
@@ -1247,20 +1294,6 @@ select::-ms-expand {
 }
 .footer_area .footer_social a i:hover {
 	color: #FF5467; 
-}
-
-.footer_area .footer_bottom {
-	text-align: center; 
-	border-top: 1px solid #e4e4e4;
-	padding-top: 15px;
-}
-
-.footer_area .footer_bottom p {
-	margin-bottom: 0;
-}
-	
-.footer_area .footer_bottom a {
-	color: #FAA10F;
 }
 
 /**********************************/
@@ -1324,6 +1357,25 @@ a:hover.back-to-top {
 	margin-bottom: 1.25rem;
 }
 
+.btn-browse {
+	display: flex;
+	padding: 1.4rem 1.25rem 1.4rem 1.25rem;
+	border: 0.125rem solid #FF5467;
+	border-radius: 1.5rem;
+	background-color: #FF5467;
+	color: #fff;
+	font: 600 0.875rem/0 "Poppins", sans-serif;
+	transition: all 0.2s;
+	margin-bottom: 0 !important;
+	margin-left: -5.9rem;
+	z-index: 2;
+}
+
+.btn-browse:hover {
+	border: 0.125rem solid #FAA10F;
+	background-color: #FAA10F;
+}
+
 /* Competitions Card*/
 .competitions-card {
 	/* padding-top: 6.875rem; */
@@ -1361,6 +1413,7 @@ a:hover.back-to-top {
 	overflow:hidden;
 	box-shadow: 2px 2px 10px 0 rgba(0,0,0,0.15);
 	transition: 0.3s;
+	background: #fafafa;
 }
 
 .competitions-card .card-wrapper:hover {
@@ -1377,16 +1430,8 @@ a:hover.back-to-top {
 
 .competitions-card .card-content {
     padding: 15px 15px;
-    background: #fafafa;
-}
-
-.max-lines {
-	display: block;/* or inline-block */
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	overflow: hidden;
-	max-height: 1.2em;
-	line-height: 1.2em;
+	background: #fafafa;
+	height: 100%;
 }
 
 .competitions-card .card-info {
@@ -1396,7 +1441,8 @@ a:hover.back-to-top {
     align-items: center;
     color: #555555;
     background: #eeeeee;
-    font-size: 1em;
+	font-size: 1em;
+    margin-top: auto;
 }
 
 .competitions-card .card-info i {
@@ -1404,6 +1450,70 @@ a:hover.back-to-top {
 	margin-right: 8px;
 	color: #FAA10F;
 }
+.competitions-card .card-content i {
+    font-size: 0.9em;
+	margin-right: 8px;
+	color: #FAA10F;
+}
+
+.competitions-card .card-content .profile-top h6{
+	margin-top: auto;
+	margin-bottom: auto;
+	color: #372D21;
+	font: 400 0.9rem/1rem "Poppins", sans-serif;
+}
+
+.competitions-card .card-content .keterangan h6{
+	color: #372D21;
+	font: 400 0.9rem/1rem "Poppins", sans-serif;
+}
+
+.competitions-card .card-title{
+	min-height: 2.4em;
+	margin-bottom: 0.5rem !important;
+	display: flex;
+	align-items: center;
+}
+
+.competitions-card .max-lines {
+	display: block;/* or inline-block */
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	overflow: hidden;
+	max-height: 2.4em;
+	line-height: 1.2em;
+}
+
+.property-card .card-title{
+	min-height: 4.5em;
+	margin-bottom: 0.5rem !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.property-card .max-lines {
+	display: block;/* or inline-block */
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	overflow: hidden;
+	max-height: 4.5em;
+	line-height: 1.2em;
+}
+
+.competitions-card .card-content .profile-top {
+    display: flex;
+	-webkit-box-align: center;
+	-webkit-box-pack: justify;
+	margin-bottom: 15px;
+}
+
+.fit-avatar-image{
+	width: 25;
+    height: 25;
+    margin-right: 10px;
+	border-radius: 50%;
+  }
 
 .competitions-card .card-link {
 	font-size: 1em;
@@ -1745,6 +1855,8 @@ input[type="radio"]{
 	transform: rotate(-225deg);
 }
 /* end of sort by */
+
+
 
 /*****************************/
 /*     13. Detail Page	     */
@@ -2499,6 +2611,12 @@ input[type="radio"]{
 	padding: 30px 0px 0px;
 }
 
+.register .wrap-login100 {
+	width: 390px;
+	overflow: hidden;
+	padding: 70px 0px 50px;
+}
+
 .login100-form-title {
 	text-align: center;
 	padding-bottom:30px
@@ -2574,6 +2692,62 @@ input[type="radio"]{
 	border: 1px solid #DEDEDE;
 }
 
+.steps-navigation {
+    align-content: center;
+    align-items: center;
+    counter-reset: stepCount;
+    display: flex;
+    justify-content: space-around;
+    margin: 0px auto 50px;
+    padding-left: 40px;
+}
+
+.steps-navigation a, .steps-navigation span {
+    background: #FAA10F;
+    color: #fff;
+    content: ' ';
+    display: flex;
+    flex-grow: 1;
+    height: 1px;
+    line-height: 1em;
+    margin: 0;
+    position: relative;
+    text-align: right;
+}
+
+.steps-navigation a::before, .steps-navigation span::before {
+    background: #FAA10F;
+    border-radius: 50%;
+    color: #fff;
+    content: counter(stepCount);
+    counter-increment: stepCount;
+    height: 2em;
+    left: -2em;
+    line-height: 2em;
+    position: absolute;
+    text-align: center;
+    top: -.85em;
+    width: 2em;
+}
+
+.steps-navigation a.active, .steps-navigation span.active {
+    background-color: #372D21;
+}
+
+.steps-navigation a.active~a, .steps-navigation a.active~span, .steps-navigation span.active~a, .steps-navigation span.active~span {
+    background-color: #372D21;
+}
+
+.steps-navigation a.active~a::before, .steps-navigation a.active~span::before, .steps-navigation span.active~a::before, .steps-navigation span.active~span::before {
+    background-color: #372D21;
+}
+
+.steps-navigation a:last-child, .steps-navigation span:last-child {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
 .confirm-delete .btn-outline-secondary {
 	color: #6c757d;
 	border-color: #6c757d;
@@ -2585,12 +2759,22 @@ input[type="radio"]{
 	border-color: #6c757d;
 	text-decoration: none !important;
   }
+
+.page404.curvey {
+	background: url('../images/curve5.svg') center center no-repeat;
+	background-size: 500px 300px;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+.page404 img{
+	width: 100%;
+}
 /*****************************/
 /*     15. Dashboard         */
 /*****************************/	
 .dashboard .container-dashboard {
 	width: 100%;  
-	min-height: 100vh;
+	min-height: 90vh;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -2847,7 +3031,7 @@ h3.hint--top:after {
 
 .todo-request p:after {
     content: '';
-    background: transparent url(../images/request-lomba.svg) no-repeat 0 0;
+    background: transparent url(../images/request-lomba-icon.svg) no-repeat 0 0;
     background-size: 320px 100px;
     height: 100px;
     width: 120px;
@@ -3102,8 +3286,54 @@ input[type=text] {
     border-radius: 3px;
     box-sizing: border-box;
 }
+
 /*****************************/
-/*     16. Media Queries     */
+/*     16. Settings          */
+/*****************************/	
+.btn-settings {
+	display: inline-block;
+	padding: 1.5rem 0rem;
+	color: #372D21;
+	font: 600 0.875rem/0 "Poppins", sans-serif;
+	transition: all 0.2s;
+	text-align: left;
+	cursor: pointer;
+}
+
+.btn-settings:hover {
+	color: #FAA10F !important;
+}
+
+.btn-settings.active {
+	color: #FF5467 !important;
+}
+
+.btn-default {
+	display: flex;
+	padding: 1.1rem 1.25rem 1.1rem 1.25rem;
+	border: 0.125rem solid #FF5467;
+	border-radius: 0.3rem;
+	background-color: #FF5467;
+	color: #fff;
+	font: 600 0.875rem/0 "Poppins", sans-serif;
+	transition: all 0.2s;
+	margin-bottom: 0 !important;
+	margin-left: 0.8rem;
+}
+
+.btn-default:hover {
+	background-color: transparent;
+	color: #FF5467;
+}
+.btn-default:active {
+	border: none !important;
+	margin-bottom: 0 !important;
+	margin-left: 0.8rem;
+	padding: 1.1rem 1.25rem 1.1rem 1.25rem;
+}
+
+/*****************************/
+/*     17. Media Queries     */
 /*****************************/	
 /* Min-	width 768px */
 @media (min-width: 768px) {
@@ -3337,8 +3567,8 @@ input[type=text] {
 
 	.header-competitions .text-container {
 		margin-left: 2rem;
-		margin-bottom: 6rem;
-		margin-top: 4rem;
+		margin-bottom: 8rem;
+		margin-top: 8rem;
 	}
 
 	.header-competitions .illustration {
@@ -3408,6 +3638,10 @@ input[type=text] {
 
 	.header-content .image-container {
 		margin-left: 3rem;
+	}
+
+	.header-content .tentangkami .image-container {
+		margin-left: 0;
 	}
 	/* end of header */
 

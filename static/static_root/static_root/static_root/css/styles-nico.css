@@ -375,10 +375,9 @@ input{
 	overflow: hidden;
 	border: 1px solid #ccc;
 	background-color: #f1f1f1;
-  }
+}
   
-  /* Style the buttons that are used to open the tab content */
-  .tab button {
+.tab button {
 	background-color: inherit;
 	float: left;
 	border: none;
@@ -386,22 +385,19 @@ input{
 	cursor: pointer;
 	padding: 14px 16px;
 	transition: 0.3s;
-  }
+}
   
-  /* Change background color of buttons on hover */
-  .tab button:hover {
+.tab button:hover {
 	background-color: #ddd;
-  }
+}
   
-  /* Create an active/current tablink class */
-  .tab button.active {
+.tab button.active {
 	background-color: #ccc;
-  }
+}
   
-  /* Style the tab content */
-  .tabcontent {
+.tabcontent {
 	display: none;
-  }
+}
 
   ul.as-selections li.as-original input {
     height: calc(1.5em + 0.75rem + 2px) !important;
@@ -419,12 +415,27 @@ input{
   }
 
   .searchname{
-	  height: 30px !important;
-	  padding: 0px !important;
-	  margin-bottom: 20px;
-	  width: 70%;
+		height: 50px !important;
+		padding: 10px 20px !important;
+		width: 80%;
+		border-radius: 1.5rem;
   }
   
+  .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #FAA10F;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.25);
+	}
+
+	.searchname.form-control:focus {
+		color: #495057;
+		background-color: #fff;
+		border-color: #FF5467;
+		outline: 0;
+		box-shadow: 0 0 0 0.2rem rgba(255, 0, 34, 0.25);
+		}
   
    hr.solid {
 	border-top:1px solid #afafaf;
@@ -453,4 +464,27 @@ input{
   }
 .footer-link li {
     padding: 10px 0;
-}
+  }
+#description ul {
+	list-style : circle
+  }
+
+  .django-ckeditor-widget{
+	  display : block !important;
+  }
+  .form-group .cke{
+	  width : 100% !important;
+  }
+
+  .card-content-text{
+	  margin-top: auto;
+	  color: #372D21;
+	  font: 400 0.9rem/1rem "Poppins", sans-serif;
+  }
+  .card-content .keterangan{
+	margin-top: auto;
+  }
+  .card-info .card-content-text{
+	margin-top: auto;
+	margin-bottom: auto;
+  }

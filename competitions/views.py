@@ -23,7 +23,7 @@ def about (request):
     return render(request, template)
 
 def browse (request):
-    listlomba = Lomba.objects.filter(deadline__gte =timezone.now())
+    listlomba = Lomba.objects.all()
     data = request.GET.copy()
         
     listlomba_filter = Filter(data, queryset=listlomba)
@@ -43,7 +43,7 @@ def browse (request):
     return render(request, template , context)
 
 def home (request):
-    listlomba = Lomba.objects.filter(deadline__gte =timezone.now()).order_by('-created')[:5]
+    listlomba = Lomba.objects.order_by('-created')[:5]
     totallomba = Lomba.objects.all()
     listkategori = Kategori.objects.annotate(totalkategori = Count('lomba'))
     context = {'total':totallomba, 'list_lomba' : listlomba , 'list_kategori' : listkategori}
@@ -54,7 +54,7 @@ def home (request):
 def detaillomba (request, slug, pk):
     detaillomba = Lomba.objects.get(slug=slug, pk=pk)
 
-    recent = Lomba.objects.filter(deadline__gte =timezone.now()).order_by('-created')[:5]
+    recent = Lomba.objects.order_by('-created')[:5]
     related = detaillomba.tags.similar_objects()[:5]
 
     try:

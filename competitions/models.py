@@ -50,7 +50,6 @@ class Lomba(models.Model):
        default='umum',)
 
     image = models.ImageField(upload_to='poster/' , blank=True , null=True)
-
     slug = models.SlugField(blank=True , null=True,max_length=255)
 
     def save(self, *args , **kwargs):

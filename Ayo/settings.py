@@ -23,7 +23,7 @@ PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 SECRET_KEY = 'wcswg5)(5k+u8079h3a#w=r0kh%!k+5lp^t9%86qd+pwgh8@^&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -31,10 +31,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'ckeditor',
-    'whitenoise.runserver_nostatic',
+    # 'ckeditor',
     'dateutil',
-    'tinymce',
     "taggit_autosuggest",
     'accounts',
     'bootstrap_datepicker_plus',
@@ -54,10 +52,11 @@ INSTALLED_APPS = [
     
     
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,7 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 ROOT_URLCONF = 'Ayo.urls'
 
 TEMPLATES = [
@@ -150,7 +149,7 @@ USE_THOUSAND_SEPARATOR = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
@@ -176,20 +175,33 @@ BOOTSTRAP4 = {
     'include_jquery': True,
 }
 
-CKEDITOR_CONFIGS = {
-   'default': {
-       'toolbar_Full': [
-            ['Format', 'Bold', 'Italic', 'Underline', 'Strike'],
+# CKEDITOR_CONFIGS = {
+#    'default': {
+#        'toolbar_Full': [
+#             ['Format', 'Bold', 'Italic', 'Underline', 'Strike'],
             
-            ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-            ['NumberedList','BulletedList'],
-            ['Indent','Outdent'],
-            ['Maximize'],
-        ],
-        'extraPlugins': 'justify,liststyle,indent',
-   },
-}
+#             ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+#             ['NumberedList','BulletedList'],
+#             ['Indent','Outdent'],
+#             ['Maximize'],
+#         ],
+#         'extraPlugins': 'justify,liststyle,indent',
+#    },
+# }
 
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {"handlers": ["console"], "level": "INFO"},
+    },
+}

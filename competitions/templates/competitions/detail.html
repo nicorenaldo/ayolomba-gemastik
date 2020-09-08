@@ -20,10 +20,10 @@
        <div class="row">
           <div class="col-lg-8">
              <div class="single-post">
-                <a href="{{ detail_lomba.image.url }}" class="popup-link" data-effect="fadeIn">
+                <a href="{{ detail_lomba.get_photo_url }}" class="popup-link" data-effect="fadeIn">
                     <div class="image-container">
                         <div class="feature-img">
-                           <img class="img-fluid poster" src="{{ detail_lomba.image.url }}" alt="">
+                           <img class="img-fluid poster" src="{{ detail_lomba.get_photo_url }}" alt="">
                         </div>
                     </div>
                 </a>
@@ -72,7 +72,7 @@
                          class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                          <div class="thumb">
                             <a href="{{prev.get_absolute_url}}">
-                               <img class="img-fluid thumbnail-recent" src="{{prev.image.url}}" alt="">
+                               <img class="img-fluid thumbnail-recent" src="{{prev.get_photo_url}}" alt="">
                             </a>
                          </div>
                          <div class="arrow">
@@ -102,7 +102,7 @@
                          </div>
                          <div class="thumb">
                             <a href="{{next.get_absolute_url}}">
-                               <img class="img-fluid thumbnail-recent" src="{{next.image.url}}" alt="">
+                               <img class="img-fluid thumbnail-recent" src="{{next.get_photo_url}}" alt="">
                             </a>
                          </div>
                       </div>
@@ -111,7 +111,7 @@
              </div>
              <div class="blog-author">
                 <div class="media align-items-center">
-                   <img class="mr-3 rounded-circle account-img" src="{{ detail_lomba.owner.profile.image.url }}" alt="">
+                   <img class="mr-3 rounded-circle account-img" src="{{ detail_lomba.owner.profile.get_photo_url }}" alt="">
                    <div class="media-body">
                       <a href="#">
                          <h4>{{detail_lomba.owner.profile.firstname}} {{detail_lomba.owner.profile.lastname}}</h4>
@@ -164,7 +164,7 @@
                      {% for Lomba in related %}
                         <a class="media post_item" href="{{ Lomba.get_absolute_url }}">   
                            <div class="media post_item">
-                              <img class='thumbnail-recent' src="{{ Lomba.image.url }}" alt="post">
+                              <img class='thumbnail-recent' src="{{ Lomba.get_photo_url }}" alt="post">
                               <div class="media-body">
                                  <h5>{{Lomba.name}}</h5>
                                  <p>January 12, 2019</p>
@@ -179,7 +179,7 @@
                     {% for Lomba in recent %}
                        <a class="media post_item" href="{{ Lomba.get_absolute_url }}">   
                           <div class="media post_item">
-                             <img class='thumbnail-recent' src="{{ Lomba.image.url }}" alt="post">
+                             <img class='thumbnail-recent' src="{{ Lomba.get_photo_url }}" alt="post">
                              <div class="media-body">
                                 <h5>{{Lomba.name}}</h5>
                                 <p>January 12, 2019</p>

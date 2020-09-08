@@ -71,6 +71,13 @@ class Lomba(models.Model):
             return result.days
         else:
             return abs(result.days)
+    
+    @property
+    def get_photo_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+        else:
+            return "/static/images/AyoLomba!.png"
 
 class Kategori(models.Model):
     #Contains all category

@@ -136,7 +136,7 @@
                 {% for Lomba in response %}
                 <div class="card-wrapper">
                     <a href="{{ Lomba.get_absolute_url }}" class="card-link">
-                        <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                        <img class="card-image" src="{{ Lomba.get_photo_url }}" alt="">
                     </a>
                     <div class="card-content">
                         <div class="profile-top"> 

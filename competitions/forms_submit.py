@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Lomba
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
-from ckeditor.widgets import CKEditorWidget
+
 
 class SubmitForm(forms.ModelForm):
     
@@ -13,7 +13,6 @@ class SubmitForm(forms.ModelForm):
             'deadline':DatePickerInput(),
             'tanggalpelaksanaan':DatePickerInput(),
             'image': forms.ClearableFileInput(),
-            'description' : CKEditorWidget()
         }
         labels = {
         "name": "Nama Lomba"

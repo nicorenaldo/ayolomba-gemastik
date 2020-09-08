@@ -21,7 +21,7 @@ from accounts import views as accounts_views
 from competitions import views as competitions
 from django.contrib.auth import views as auth_views
 from django.conf import settings
-
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,11 +39,11 @@ urlpatterns = [
     path('lomba/', include('competitions.urls' , namespace='competitions')),
     path('profile/', include('accounts.urls' , namespace='profile')),
     path('browse/', competitions.browse, name='browse'),
-    
-    
-    
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

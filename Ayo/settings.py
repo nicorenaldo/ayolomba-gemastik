@@ -23,15 +23,16 @@ PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 SECRET_KEY = 'wcswg5)(5k+u8079h3a#w=r0kh%!k+5lp^t9%86qd+pwgh8@^&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ayolomba-gemastik.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'ckeditor',
+    'whitenoise.runserver_nostatic',
     'dateutil',
     'tinymce',
     "taggit_autosuggest",
@@ -64,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ROOT_URLCONF = 'Ayo.urls'
 
 TEMPLATES = [
@@ -149,7 +150,7 @@ USE_THOUSAND_SEPARATOR = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static" , "static_root")
+STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]

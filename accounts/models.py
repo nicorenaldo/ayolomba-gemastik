@@ -22,6 +22,7 @@ class Profile(models.Model):
        default='umum',)
     image = models.ImageField(default='default.jpg',blank=True, upload_to='profile_pics')
     favorite = models.ManyToManyField(Lomba)
+    subscribe = models.ManyToManyField(Kategori)
 
     def __str__(self):
         return f'{self.user.username} Profile'

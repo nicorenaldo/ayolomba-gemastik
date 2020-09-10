@@ -44,6 +44,7 @@ def profile(request):
                                 request.FILES,
                                 instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
+            # request.user.profile.subscribe.add(p_form.cleaned_data['subscribe2'])
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
@@ -54,11 +55,12 @@ def profile(request):
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
     listlomba = Lomba.objects.filter(owner=request.user)
-
+    listkategori = Kategori.objects.annotate(totalkategori = Count('lomba'))
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'list_lomba' : listlomba
+        'list_lomba' : listlomba,
+        'list_kategori' : listkategori,
     }
     template = 'accounts/profile.html'
     return render(request, template, context)
@@ -74,6 +76,7 @@ def settings(request):
                                 instance=request.user.profile)
         password_form = PasswordChangeForm(request.user, request.POST)
         if u_form.is_valid() and p_form.is_valid():
+            # request.user.profile.subscribe.add(p_form.cleaned_data['subscribe2'])
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')

@@ -276,7 +276,7 @@
                                         <div class="cards-container">
                                             {% for Lomba in user.profile.favorite.all %}
                                             <div class="card-wrapper">
-                                                <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                                                <img class="card-image" src="{{ Lomba.get_photo_url }}" alt="">
                                                 <div class="card-content">
                                                     <h4 class="max-lines">{{Lomba.name}}</h4>
                                                     <h6>{{Lomba.location}}</h6>
@@ -305,7 +305,7 @@
                                         <div class="cards-container">
                                             {% for Lomba in list_lomba %}
                                             <div class="card-wrapper">
-                                                <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                                                <img class="card-image" src="{{ Lomba.get_photo_url }}" alt="">
                                                 <div class="card-content">
                                                     <h4 class="max-lines">{{Lomba.name}}</h4>
                                                     <h6>{{Lomba.location}}</h6>
@@ -334,7 +334,7 @@
                                         <div class="cards-container">
                                             {% for Lomba in listlomba %}
                                             <div class="card-wrapper">
-                                                <img class="card-image" src="{{ Lomba.image.url }}" alt="">
+                                                <img class="card-image" src="{{ Lomba.get_photo_url }}" alt="">
                                                 <div class="card-content">
                                                     <h4 class="max-lines">{{Lomba.name}}</h4>
                                                     <h6>{{Lomba.location}}</h6>

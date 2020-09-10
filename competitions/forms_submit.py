@@ -2,10 +2,10 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Lomba
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
-
+from ckeditor.widgets import CKEditorWidget
 
 class SubmitForm(forms.ModelForm):
-    
+
     class Meta:
         model = Lomba
         exclude = ['visited','created','active','slug','owner_email','owner']
@@ -13,9 +13,20 @@ class SubmitForm(forms.ModelForm):
             'deadline':DatePickerInput(),
             'tanggalpelaksanaan':DatePickerInput(),
             'image': forms.ClearableFileInput(),
+            'description' : CKEditorWidget(),
+            'jumlahhadiah' : forms.NumberInput(attrs={'placeholder': 'Masukkan angka tanpa koma'}),
         }
         labels = {
-        "name": "Nama Lomba"
+        "name": "Nama Lomba",
+        "category" : "Kategori",
+        "jumlahhadiah" : "Jumlah Hadiah",
+        "competitions_level" : "Tingkat Kompetisi",
+        "participant_level" : "Tingkat Peserta",
+        "location" : "Lokasi",
+        "deadline" : "Deadline Pendaftaran",
+        "tanggalpelaksanaan" : "Tanggal Pelaksanaan",
+        "description" : "Deskripsi Lomba",
+        "image" : "Input Gambar",
         }
 
     def clean_tags(self):

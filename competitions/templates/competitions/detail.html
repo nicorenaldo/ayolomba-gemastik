@@ -33,7 +33,7 @@
                            <h2>{{detail_lomba.name}}</h2>
                            <ul class="blog-info-link">
                               <li><a href="#"><i class="far fa-user"></i> By {{detail_lomba.owner}}</a></li>
-                              <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
+                              <!-- <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li> -->
                               {% if detail_lomba.owner == user %}
                               <li><a href="{% url 'competitions:author-update' slug=detail_lomba.slug pk=detail_lomba.pk %}"><i class='fas fa-edit'></i> Edit</a></li>
                               <li><a href="{% url 'competitions:author-delete' slug=detail_lomba.slug pk=detail_lomba.pk %}"><i class='fas fa-trash-alt'></i> Hapus</a></li>
@@ -63,6 +63,12 @@
                     <div id="description">
                         {{detail_lomba.description|safe|linebreaks}}
                     </div>
+                    <div id="description">Tags : 
+                     {%for tags in detail_lomba.tags.all%}
+                        #{{tags.name}}, 
+                     {%endfor%} 
+                    </div>
+                    
                 </div>
              </div>
              <div class="navigation-top">
@@ -111,13 +117,12 @@
              </div>
              <div class="blog-author">
                 <div class="media align-items-center">
-                   <img class="mr-3 rounded-circle account-img" src="{{ detail_lomba.owner.profile.get_photo_url }}" alt="">
+                   <img class="mr-3 rounded-circle account-img" src="{{ detail_lomba.owner.profile.image.url }}" alt="">
                    <div class="media-body">
                       <a href="#">
                          <h4>{{detail_lomba.owner.profile.firstname}} {{detail_lomba.owner.profile.lastname}}</h4>
                       </a>
-                      <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                         our dominion twon Second divided from</p>
+                      <p>Description</p>
                    </div>
                 </div>
              </div>
@@ -126,11 +131,12 @@
              <div class="blog_right_sidebar">
                 <div class="info d-none d-lg-block">
                     <h5>Informasi Umum</h5>
-                    <p class="info-title">Deadline: </p><p class="info-text">{{detail_lomba.deadline}}</p>
+                    <p class="info-title">Deadline Pendaftaran: </p><p class="info-text">{{detail_lomba.deadline}}</p>
+                    <p class="info-title">Tanggal Pelaksanaan: </p><p class="info-text"> {{detail_lomba.tanggalpelaksanaan}}</p>
                     <p class="info-title">Lokasi: </p><p class="info-text">{{detail_lomba.location}}</p>
                     <p class="info-title">Penyelenggara: </p><p class="info-text"> {{detail_lomba.owner}}</p>
-                    <p class="info-title">Tanggal Lomba: </p><p class="info-text"> {{detail_lomba.deadline}}</p>
                     <p class="info-title">Contact Person: </p><p class="info-text"> {{detail_lomba.contact}}</p>
+                    <p class="info-title">Total Hadiah: </p><p class="info-text">Rp {{detail_lomba.jumlahhadiah|floatformat}}</p>
                 </div>
                 <!-- <aside class="single_sidebar_widget search_widget">
                    <form action="#">

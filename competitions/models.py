@@ -25,22 +25,22 @@ class Lomba(models.Model):
         ("umum","Umum")
     )
 
-    name = models.CharField(max_length=100)
-    description = models.TextField(max_length=2000)
+    name = models.CharField(max_length=200)
+    description = models.TextField(max_length=3000)
     category = models.ForeignKey('Kategori', on_delete=models.SET_NULL, null=True)
-    jumlahhadiah = models.DecimalField(max_digits=9 , decimal_places=2)
+    jumlahhadiah = models.DecimalField(max_digits=12 , decimal_places=2)
 
     created = models.DateTimeField(default=timezone.now)
     deadline = models.DateField()
     tanggalpelaksanaan = models.DateField()
     
-    location = models.CharField(max_length=100)
+    location = models.CharField(max_length=200)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    contact = models.CharField(max_length=100)
+    contact = models.CharField(max_length=200)
     owner_email = models.EmailField(null=True)
     visited = models.IntegerField(default=0)
     link = models.URLField(null=True)
-    tags = TaggableManager(blank=True)    
+    tags = TaggableManager(help_text="ex: Teknologi, Inovasi... (Pisahkan dengan Koma)" ,blank=True)    
 
     competitions_level = models.CharField(max_length=50,
        choices=COMP_LEVEL,
@@ -93,3 +93,9 @@ class Kategori(models.Model):
     def __str__(self):
         return self.category_name
 
+    @property
+    def get_photo_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+        else:
+            return "/static/images/AyoLomba!.png"

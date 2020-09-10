@@ -201,14 +201,15 @@ a.white {
 	border: 0.125rem solid #FAA10F;
 	border-radius: 0.3rem;
 	background-color: #FAA10F;
-	color: #Fff;
+	color: #Fff !important;
 	font: 500 1rem/0 "Poppins", sans-serif;
 	transition: all 0.2s;
+	cursor: pointer;
 }
 
 .btn-big:hover {
 	background-color: transparent;
-	color: #FAA10F;
+	color: #FAA10F !important;
 }
 
 .btn-big.btn-pink {
@@ -2833,6 +2834,11 @@ input[type="radio"]{
 
 .dashboard .card .card-body {
     padding: 1.88rem 1.81rem;
+}
+
+.card-body .profile-body{
+	display : block;
+	text-align: center;
 }
 
 .media-body i {

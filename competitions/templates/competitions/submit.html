@@ -39,7 +39,19 @@
                     </div>
                     <div id ="Tab2" class="tabcontent login100-form">
                         {% for f in form.visible_fields %}
-                        {% if f.name == "deadline" or f.name == "tanggalpelaksanaan" or f.name == "location" or f.name == "contact" or f.name == "jumlahhadiah" %}
+                            {% if f.name == "location" or f.name == "contact" or f.name == "jumlahhadiah" %}
+                                <div class="form-group">
+                                    <label for="{{ f.id_for_label }}">{{ f.label}}</label>
+                                    {{ f|add_class:'form-control filestyle' }}
+                                    {% for error in f.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                            {% endif %} 
+                        {% endfor %}
+                        {% for f in form.visible_fields %}
+                            {% if f.name == "deadline" or f.name == "tanggalpelaksanaan" %}
                                 <div class="form-group">
                                     <label for="{{ f.id_for_label }}">{{ f.label}}</label>
                                     {{ f|add_class:'form-control filestyle' }}

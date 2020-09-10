@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    # 'ckeditor',
+    'ckeditor',
     'dateutil',
     "taggit_autosuggest",
     'accounts',
@@ -175,19 +175,19 @@ BOOTSTRAP4 = {
     'include_jquery': True,
 }
 
-# CKEDITOR_CONFIGS = {
-#    'default': {
-#        'toolbar_Full': [
-#             ['Format', 'Bold', 'Italic', 'Underline', 'Strike'],
+CKEDITOR_CONFIGS = {
+   'default': {
+       'toolbar_Full': [
+            ['Format', 'Bold', 'Italic', 'Underline', 'Strike'],
             
-#             ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-#             ['NumberedList','BulletedList'],
-#             ['Indent','Outdent'],
-#             ['Maximize'],
-#         ],
-#         'extraPlugins': 'justify,liststyle,indent',
-#    },
-# }
+            ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+            ['NumberedList','BulletedList'],
+            ['Indent','Outdent'],
+            ['Maximize'],
+        ],
+        'extraPlugins': 'justify,liststyle,indent',
+   },
+}
 
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)

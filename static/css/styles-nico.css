@@ -488,3 +488,8 @@ input{
 	margin-top: auto;
 	margin-bottom: auto;
   }
+
+  .input-group .bootstrap-datetimepicker-widget{
+	  display : block !important;
+	  
+  }
